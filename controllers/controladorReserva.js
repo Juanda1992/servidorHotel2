@@ -3,120 +3,237 @@
 
 const { request, response } = require('express')
 
+const {insertarNombreCliente} = require ('../services/servicioReservas')
+const {insertarApellidoCliente} = require ('../services/servicioReservas')
+const {insertarTelCliente} = require ('../services/servicioReservas')
+const {insertarFechaInicio} = require ('../services/servicioReservas')
+const {insertarFechaFinal} = require ('../services/servicioReservas')
+const {insertarNumeroPersonas} = require ('../services/servicioReservas')
+const {leerReserva} = require ('../services/servicioReservas')
+const {modificarReserva} = require ('../services/servicioReservas')
+const {borrarReserva} = require ('../services/servicioReservas')
+
 //crear una funcion para cada operacion del servidor
 
-function registrarNombreCliente(peticion = request, respuesta = response) {
+async function registrarNombreCliente(peticion = request, respuesta = response) {
 
-    //NOMBRE // EDAD // POSICION // DORSAL // EQUIPO
 
-    // let datosPeticion = peticion.body
+    let datosPeticion = peticion.body
 
-    respuesta.json({
-        mensaje: "estoy registrando un nombre",
-        // datos:datosPeticion
-    })
+    try {
 
-}
+        await insertarNombreCliente(datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito registrando el nombre del cliente"
+        })
+        
+    } catch (error) {
 
-function registrarApellidoCliente(peticion = request, respuesta = response) {
-
-    //NOMBRE // EDAD // POSICION // DORSAL // EQUIPO
-
-    // let datosPeticion = peticion.body
-
-    respuesta.json({
-        mensaje: "estoy registrando un apellido",
-        // datos:datosPeticion
-    })
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
 
 }
 
-function registrarTelCliente(peticion = request, respuesta = response) {
+async function registrarApellidoCliente(peticion = request, respuesta = response) {
 
-    //NOMBRE // EDAD // POSICION // DORSAL // EQUIPO
 
-    // let datosPeticion = peticion.body
+    let datosPeticion = peticion.body
 
-    respuesta.json({
-        mensaje: "estoy registrando un tel",
-        // datos:datosPeticion
-    })
+    try {
 
-}
+        await insertarApellidoCliente(datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito registrando el apellido del cliente"
+        })
+        
+    } catch (error) {
 
-function registrarFechaInicio(peticion = request, respuesta = response) {
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
 
-    //NOMBRE // EDAD // POSICION // DORSAL // EQUIPO
-
-    // let datosPeticion = peticion.body
-
-    respuesta.json({
-        mensaje: "estoy registrando la Fecha de inicio",
-    //     datos:datosPeticion
-     })
-
-}
-
-function registrarFechaFinal(peticion = request, respuesta = response) {
-
-    //NOMBRE // EDAD // POSICION // DORSAL // EQUIPO
-
-    // let datosPeticion = peticion.body
-
-    respuesta.json({
-        mensaje: "estoy registrando la fecha final",
-        // datos:datosPeticion
-    })
+    
 
 }
 
-function registrarNumeroPersonas(peticion = request, respuesta = response) {
-
-    //NOMBRE // EDAD // POSICION // DORSAL // EQUIPO
-
-    // let datosPeticion = peticion.body
-
-    respuesta.json({
-        mensaje: "estoy registrando el numero de personas",
-        // datos:datosPeticion
-    })
-
-}
-
-function consultarReserva(peticion = request, respuesta = response) {
-
-    // RECIBIR EL ID A BUSCAR 
-    // let id= peticion.params.id
-
-    respuesta.json({
-        mensaje: "estoy buscando una consulta" // + id
-    })
-
-}
+async function registrarTelCliente(peticion = request, respuesta = response) {
 
 
-function editarReserva(peticion = request, respuesta = response) {
+    let datosPeticion = peticion.body
 
-     // RECIBIR EL ID A EDITAR 
-    //  let id= peticion.params.id
+    try {
 
-    //  let datosPeticion = peticion.body
+        await insertarTelCliente(datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito registrando el telefono del cliente"
+        })
+        
+    } catch (error) {
 
-    respuesta.json({
-        mensaje: "estoy editando una reserva"
-    })
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
 
 }
 
-function eliminarReserva(peticion = request, respuesta = response) {
+async function registrarFechaInicio(peticion = request, respuesta = response) {
 
-     // RECIBIR EL ID A ELIMINAR 
-    //  let id= peticion.params.id
+    
+    let datosPeticion = peticion.body
 
-    respuesta.json({
-        mensaje: "estoy eliminando una reserva"
-    })
+    try {
 
+        await insertarFechaInicio(datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito registrando la fecha inicio del cliente"
+        })
+        
+    } catch (error) {
+
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
+
+}
+
+async function registrarFechaFinal(peticion = request, respuesta = response) {
+
+    
+
+    let datosPeticion = peticion.body
+
+    try {
+
+        await insertarFechaFinal(datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito registrando la fecha final del cliente"
+        })
+        
+    } catch (error) {
+
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
+
+}
+
+async function registrarNumeroPersonas(peticion = request, respuesta = response) {
+
+   
+    let datosPeticion = peticion.body
+
+    try {
+
+        await insertarNumeroPersonas(datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito registrando el numero de personas"
+        })
+        
+    } catch (error) {
+
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
+
+}
+
+async function consultarReserva(peticion = request, respuesta = response) {
+
+    
+    let id= peticion.params.id
+
+    try {
+
+        // creamos una variable para almacenar lo que nos devuelve al leer el id 
+        let reserva =await leerReserva(id)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje: reserva
+        })
+        
+    } catch (error) {
+
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
+
+}
+
+
+async function editarReserva(peticion = request, respuesta = response) {
+
+     
+    let id= peticion.params.id
+    let datosPeticion = peticion.body
+
+    try {
+
+        await modificarReserva(id,datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito editando la reserva"
+        })
+        
+    } catch (error) {
+
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
+   
+}
+
+async function eliminarReserva(peticion = request, respuesta = response) {
+
+    
+    let id= peticion.params.id
+   
+    try {
+
+        await borrarReserva(id)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito eliminando la reserva"
+        })
+        
+    } catch (error) {
+
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
 }
 
 module.exports = {

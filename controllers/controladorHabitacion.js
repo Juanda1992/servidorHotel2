@@ -3,106 +3,211 @@
 
 const { request, response } = require('express')
 
+const {insertarNombreHabitacion} = require ('../services/servicioHabitaciones.js')
+const {insertarFotoHabitacion} = require ('../services/servicioHabitaciones.js')
+const {insertarDescripcion} = require ('../services/servicioHabitaciones.js')
+const {insertarPrecioAdulto} = require ('../services/servicioHabitaciones.js')
+const {insertarPrecioNino} = require ('../services/servicioHabitaciones.js')
+const {leerHabitacion} = require ('../services/servicioHabitaciones.js')
+const {modificarHabitacion} = require ('../services/servicioHabitaciones.js')
+const {borrarHabitacion} = require ('../services/servicioHabitaciones.js')
+
 //crear una funcion para cada operacion del servidor
 
-function registrarNombreHabitacion(peticion = request, respuesta = response) {
+async function registrarNombreHabitacion(peticion = request, respuesta = response) {
 
-    //NOMBRE // EDAD // POSICION // DORSAL // EQUIPO
+    
 
-    // let datosPeticion = peticion.body
+     let datosPeticion = peticion.body
 
-    respuesta.json({
-        mensaje: "estoy registrando una habitacion",
-        // datos:datosPeticion
-    })
+     try {
 
-}
+        await insertarNombreHabitacion(datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito registrando el nombre de la habitacion"
+        })
+        
+    } catch (error) {
 
-function registrarFotoHabitacion(peticion = request, respuesta = response) {
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
 
-    //NOMBRE // EDAD // POSICION // DORSAL // EQUIPO
-
-    // let datosPeticion = peticion.body
-
-    respuesta.json({
-        mensaje: "estoy registrando una foto",
-        // datos:datosPeticion
-    })
-
-}
-
-function registrarDescripcion(peticion = request, respuesta = response) {
-
-    //NOMBRE // EDAD // POSICION // DORSAL // EQUIPO
-
-    // let datosPeticion = peticion.body
-
-    respuesta.json({
-        mensaje: "estoy registrando una descripcion",
-        // datos:datosPeticion
-    })
+    // respuesta.json({
+    //     mensaje: "estoy registrando una habitacion", 
+    //})
 
 }
 
-function registrarPrecioAdulto(peticion = request, respuesta = response) {
+async function registrarFotoHabitacion(peticion = request, respuesta = response) {
 
-    //NOMBRE // EDAD // POSICION // DORSAL // EQUIPO
 
-    //let datosPeticion = peticion.body
+    let datosPeticion = peticion.body
 
-    respuesta.json({
-        mensaje: "estoy registrando un precio adulto",
-        //datos:datosPeticion
-    })
+    try {
 
-}
+        await insertarFotoHabitacion(datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito registrando la foto de la habitacion"
+        })
+        
+    } catch (error) {
 
-function registrarPrecioNino(peticion = request, respuesta = response) {
-
-    //NOMBRE // EDAD // POSICION // DORSAL // EQUIPO
-
-    //let datosPeticion = peticion.body
-
-    respuesta.json({
-        mensaje: "estoy registrando un precio nino",
-       // datos:datosPeticion
-    })
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
 
 }
 
-function consultarHabitacion(peticion = request, respuesta = response) {
+async function registrarDescripcion(peticion = request, respuesta = response) {
 
-    // RECIBIR EL ID A BUSCA            
-        //let id= peticion.params.id
 
-    respuesta.json({
-        mensaje: "estoybuscando una habitacion " //+ id
-    })
+     let datosPeticion = peticion.body
+
+     try {
+
+        await insertarDescripcion(datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito registrando la foto de la habitacion"
+        })
+        
+    } catch (error) {
+
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
 
 }
 
-function editarHabitacion(peticion = request, respuesta = response) {
+async function registrarPrecioAdulto(peticion = request, respuesta = response) {
 
-     // RECIBIR EL ID A EDITAR 
-     //let id= peticion.params.id
 
-    // let datosPeticion = peticion.body
+    let datosPeticion = peticion.body
 
-    respuesta.json({
-        mensaje: "estoy editando una habitacion"
-    })
+    try {
+
+        await insertarPrecioAdulto(datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito registrando el precio por adulto"
+        })
+        
+    } catch (error) {
+
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
 
 }
 
-function eliminarHabitacion(peticion = request, respuesta = response) {
+async function registrarPrecioNino(peticion = request, respuesta = response) {
 
-     // RECIBIR EL ID A ELIMINAR 
-     //let id= peticion.params.id
+    let datosPeticion = peticion.body
 
-    respuesta.json({
-        mensaje: "estoy eliminando una habitacion"
-    })
+    try {
 
+        await insertarPrecioNino(datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito registrando el precio por niño"
+        })
+        
+    } catch (error) {
+
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
+
+}
+
+async function consultarHabitacion(peticion = request, respuesta = response) {
+
+          
+    let id= peticion.params.id
+
+    try {
+
+        // creamos una variable para almacenar lo que nos devuelve al leer el id 
+        let habitacion =await leerHabitacion(id)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje: habitacion
+        })
+        
+    } catch (error) {
+
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
+
+}
+
+async function editarHabitacion(peticion = request, respuesta = response) {
+
+    
+    let id= peticion.params.id
+    let datosPeticion = peticion.body
+
+    try {
+
+        await modificarHabitacion(id,datosPeticion)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito editando la habitacion"
+        })
+        
+    } catch (error) {
+
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
+}
+
+async function eliminarHabitacion(peticion = request, respuesta = response) {
+
+     
+    let id= peticion.params.id
+    
+    try {
+
+        await borrarHabitacion(id)
+        respuesta.status(200).json({
+            estado:true,
+            mensaje:"Exito eliminando la habitacion"
+        })
+        
+    } catch (error) {
+
+        respuesta.status(400).json({
+            estado:false,
+            mensaje:"Upss ... tenemos problemas: " + error
+        })
+        
+    }
 }
 
 module.exports = {
@@ -117,4 +222,3 @@ module.exports = {
     eliminarHabitacion
     
 }
-
