@@ -10,9 +10,10 @@ const HabitacionModelo = Schema ({
         required: true
     },
 
-    fotografia:{
+    apellido:{
         type: String,
         required: true
+
     },
 
     descripcion:{
@@ -20,8 +21,22 @@ const HabitacionModelo = Schema ({
         required: true
     },
 
+    fotografia:{
+        type: String,
+        required: true
+    },
 
-    
+    adulto:{
+        type: Number,
+        required: true
+    },
+
+    nino:{
+        type: Number,
+        required:true
+    }
+
+
 
 
 })
