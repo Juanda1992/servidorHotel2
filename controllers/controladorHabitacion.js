@@ -3,14 +3,16 @@
 
 const { request, response } = require('express')
 
-const {insertarNombreHabitacion} = require ('../services/servicioHabitaciones.js')
-const {insertarFotoHabitacion} = require ('../services/servicioHabitaciones.js')
-const {insertarDescripcion} = require ('../services/servicioHabitaciones.js')
-const {insertarPrecioAdulto} = require ('../services/servicioHabitaciones.js')
-const {insertarPrecioNino} = require ('../services/servicioHabitaciones.js')
-const {leerHabitacion} = require ('../services/servicioHabitaciones.js')
-const {modificarHabitacion} = require ('../services/servicioHabitaciones.js')
-const {borrarHabitacion} = require ('../services/servicioHabitaciones.js')
+const {
+    insertarNombreHabitacion,
+    insertarFotoHabitacion,
+    insertarDescripcion,
+    insertarPrecioAdulto,
+    insertarPrecioNino,
+    leerHabitacion,
+    modificarHabitacion,
+    borrarHabitacion   
+    } = require ('../services/servicioHabitaciones.js')
 
 //crear una funcion para cada operacion del servidor
 

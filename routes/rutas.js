@@ -3,24 +3,27 @@ const rutas = Router();
 
 //IMPORTO LOS CONTROLADORES
 
-const {registrarNombreCliente} = require ('../controllers/controladorReserva.js')
-const {registrarApellidoCliente} = require ('../controllers/controladorReserva.js')
-const {registrarTelCliente} = require ('../controllers/controladorReserva.js')
-const {registrarFechaInicio} = require ('../controllers/controladorReserva.js')
-const {registrarFechaFinal} = require ('../controllers/controladorReserva.js')
-const {registrarNumeroPersonas} = require ('../controllers/controladorReserva.js')
-const {consultarReserva} = require ('../controllers/controladorReserva.js')
-const {editarReserva} = require ('../controllers/controladorReserva.js')
-const {eliminarReserva} = require ('../controllers/controladorReserva.js')
+const {
+    registrarNombreCliente,
+    registrarApellidoCliente,
+    registrarTelCliente,
+    registrarFechaInicio,
+    registrarFechaFinal,
+    registrarNumeroPersonas,
+    consultarReserva,
+    editarReserva,
+    eliminarReserva} = require ('../controllers/controladorReserva.js')
 
-const {registrarNombreHabitacion} = require ('../controllers/controladorHabitacion.js')
-const {registrarFotoHabitacion} = require ('../controllers/controladorHabitacion.js')
-const {registrarDescripcion} = require ('../controllers/controladorHabitacion.js')
-const {registrarPrecioAdulto} = require ('../controllers/controladorHabitacion.js')
-const {registrarPrecioNino} = require ('../controllers/controladorHabitacion.js')
-const {consultarHabitacion} = require ('../controllers/controladorHabitacion.js')
-const {editarHabitacion} = require ('../controllers/controladorHabitacion.js')
-const {eliminarHabitacion} = require ('../controllers/controladorHabitacion.js')
+
+const {
+    registrarNombreHabitacion,
+    registrarFotoHabitacion,
+    registrarDescripcion,
+    registrarPrecioAdulto,
+    registrarPrecioNino,
+    consultarHabitacion,
+    editarHabitacion,
+    eliminarHabitacion} = require ('../controllers/controladorHabitacion.js')
 
 
 rutas.post('/hotel/v1/cliente',registrarNombreCliente)
