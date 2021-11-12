@@ -21,12 +21,12 @@ const ReservaModelo = Schema ({
     },
 
     fechaIncial:{
-        type: Number,
+        type: Date,
         required: true
     },
 
     fechaFinal:{
-        type: Number,
+        type: Date,
         required: true
     },
 
