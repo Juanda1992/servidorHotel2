@@ -1,5 +1,7 @@
 const express = require('express')
 
+const cors = require ('cors')
+
 //IMPORTAR LA FUNCION PARA CONECTARME CON LA BD
 const { conectarBD } = require('../database/conexion.js')
 
@@ -39,6 +41,7 @@ class ServidorModelo {
     llamarAuxiliares(){
         
         this.app.use(express.json())
+        this.app.use(cors())
 
     }
 

@@ -36,14 +36,14 @@ rutas.get('/hotel/v1/cliente:id',consultarReserva)
 rutas.put('/hotel/v1/cliente:id', editarReserva)
 rutas.delete('/hotel/v1/cliente:id', eliminarReserva)
 
-rutas.post('/hotel/v1/cliente',registrarNombreHabitacion)
-rutas.post('/hotel/v1/cliente',registrarFotoHabitacion)
-rutas.post('/hotel/v1/cliente',registrarDescripcion)
-rutas.post('/hotel/v1/cliente',registrarPrecioAdulto)
-rutas.post('/hotel/v1/cliente',registrarPrecioNino)
-rutas.get('/hotel/v1/cliente:id', consultarHabitacion)
-rutas.put('/hotel/v1/cliente:id', editarHabitacion)
-rutas.delete('/hotel/v1/cliente:id', eliminarHabitacion)
+rutas.post('/hotel/v1/habitacion',registrarNombreHabitacion)
+rutas.post('/hotel/v1/habitacion',registrarFotoHabitacion)
+rutas.post('/hotel/v1/habitacion',registrarDescripcion)
+rutas.post('/hotel/v1/habitacion',registrarPrecioAdulto)
+rutas.post('/hotel/v1/habitacion',registrarPrecioNino)
+rutas.get('/hotel/v1/habitacion:id', consultarHabitacion)
+rutas.put('/hotel/v1/habitacion:id', editarHabitacion)
+rutas.delete('/hotel/v1/habitacion:id', eliminarHabitacion)
 
 
 module.exports = rutas
